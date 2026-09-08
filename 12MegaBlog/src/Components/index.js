@@ -2,7 +2,7 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Container from './Container/Container'
 import Logo from "./Logo";
-import LogouBtn from "./Header/logout";
+import LogoutBtn from "./Header/logout";
 import RTE from "./RTE";
 import Signup from './Signup'
 import Login from './Login'
@@ -19,7 +19,7 @@ export {
     Footer,
     Container,
     Logo,
-    LogouBtn,
+    LogoutBtn,
     RTE,
     Signup,
     Login,

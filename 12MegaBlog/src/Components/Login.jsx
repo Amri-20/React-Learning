@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Links, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { login as authlogin } from '../Store/authSlice'
 import { Button, Input, Logo } from './index'
 import { useDispatch } from 'react-redux'
@@ -20,7 +20,7 @@ function Login() {
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if (userData) {
-                    dispatch(authLogin(userData))
+                    dispatch(authlogin(userData))
                 }
                 navigate("/")
             }
@@ -50,30 +50,30 @@ function Login() {
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-                <form onSubmit={handleSubmit(login)}  className='mt-8'>
+                <form onSubmit={handleSubmit(login)} className='mt-8'>
                     <div className='space-y-5'>
-                        <input 
-                        type="email"
-                        label="Email:"
-                        placeholder='Enter Your email'
-                        {...ergister("email",{
-                            required:true,
-                            validate:{
-                                matchPattern:(value)=> /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                        "Email address must be a valid address",
-                            }
-                        })}
+                        <Input
+                            type="email"
+                            label="Email:"
+                            placeholder='Enter Your email'
+                            {...register("email", {
+                                required: true,
+                                validate: {
+                                    matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                        "Email address must be a valid address",
+                                }
+                            })}
                         />
-                        <input 
-                        type="password"
-                        label="Password"
-                        placeholder='Enter your password'
-                        {...register("password",{required:true})}
+                        <Input
+                            type="password"
+                            label="Password"
+                            placeholder='Enter your password'
+                            {...register("password", { required: true })}
                         />
 
                         <Button
-                        type="submit"
-                        className="w-full"
+                            type="submit"
+                            className="w-full"
                         >Sign In</Button>
 
                     </div>

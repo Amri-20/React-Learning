@@ -6,7 +6,8 @@ import './App.css'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
 import { login, logout } from './Store/authSlice'
-import {Header,Footer} from './Components'
+import { Header, Footer } from './Components'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -16,7 +17,7 @@ function App() {
     authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({ userData }))
+          dispatch(login(userData))
         } else {
           dispatch(logout())
         }
@@ -24,18 +25,18 @@ function App() {
       .finally(() => { setLoading(false) })
   }, [])
 
-  return !loading ?(
-    <div className='min-h-sc flex flex-wrap content-beetween bg-gray-600'>
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-600'>
       <div>
-        <Header/>
+        <Header />
         <main>
-          TODO
-          {/* <Outlet/> */}
+          {/* TODO */}
+          <Outlet />
         </main>
-        <footer/>
+        <Footer />
       </div>
     </div>
-  ):null
+  ) : null
 }
 
 export default App

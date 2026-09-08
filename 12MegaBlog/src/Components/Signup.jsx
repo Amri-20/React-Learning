@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import authService from '../appwrite/auth'
 import { data, Link, useNavigate } from 'react-router-dom'
-import login from '../Store/authSlice'
+import {login} from '../Store/authSlice'
 import { Button, Input, Logo } from './index'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 
 
 function Signup() {
-    constnavigate = useNavigate()
+    const Navigate = useNavigate()
     const [error, setError] = useState()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
@@ -48,7 +48,7 @@ function Signup() {
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
                 <form onSubmit={handleSubmit(create)}>
                     <div className='space-y-5'>
-                        <input
+                        <Input
                             label='Full Name:'
                             placeholder='Enter Your Full Name'
                             {...register("name", {
@@ -56,11 +56,11 @@ function Signup() {
                             })}
                         />
 
-                        <input
+                        <Input
                             type="email"
                             label="Email:"
                             placeholder='Enter Your email'
-                            {...ergister("email", {
+                            {...register("email", {
                                 required: true,
                                 validate: {
                                     matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -68,7 +68,7 @@ function Signup() {
                                 }
                             })}
                         />
-                        <input
+                        <Input
                             type="password"
                             label="Password"
                             placeholder='Enter your password'
